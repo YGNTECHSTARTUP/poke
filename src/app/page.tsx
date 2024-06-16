@@ -3,17 +3,23 @@ import { Canvas } from './comp/Canvas'
 import { GridBackground } from './comp/GridBackground'
 import Link from 'next/link'
 import Form from './comp/Form'
+import { revalidatePath } from 'next/cache'
 
 
 const page = async () => {
   let id;
   let name
   do {
-      id = Math.floor(Math.random() * 860 + 1).toString();
+      id = Math.floor(Math.random() * 1000 + 1);
       console.log(id);
-      name = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`).then(res => res.json()).then(res => res.name)
+      try{
+        name = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`).then(res => res.json()).then(res => res.name)
+      }
+      catch(e){
+         revalidatePath('/')
+      }
 
-  } while (id === "0");
+  } while (id === 0);
 
   return (
     <div>

@@ -1,53 +1,74 @@
 "use client"
-import React from 'react'
-import { Input } from '../components/Input'
-import { Button } from '../components/ui/Button'
-import { SendHorizonal, Shuffle } from 'lucide-react'
-import random from '../../../utils/actions/random'
+import React, { useState } from 'react';
+import { Input } from '../components/Input';
+import { Button } from '../components/ui/Button';
+import { SendHorizonal, Shuffle, ThumbsDown, ThumbsUp } from 'lucide-react';
+import random from '../../../utils/actions/random';
+import { Dialog, DialogContent, DialogTrigger } from '../components/ui/Dialog';
 
-const Form = ({name}:{name:string}) => {
-   const[input,setInput] = React.useState('' as string)
-   const[res,setRes] = React.useState('' as string)
-   const[data,setData] = React.useState('You can only catch the Pokémon if you guess its name correctly!' as string)
-   console.log(name)
-   const handleinput = (e:React.ChangeEvent<HTMLInputElement>) => {
-  e.preventDefault()
-  setInput(e.target.value)
-   }
-   const handlesubmit = () => {
-      if(name.toLocaleLowerCase() === input.toLocaleLowerCase()){
-          setRes('Correct')
-   }
-   else{
-       setRes('Incorrect')
-       setData('You missed it! Try again')
-   }
-   }
-  return (
-<div className='flex-row md:flex  mt-[5%] '>
-        <Input type="text" placeholder="Enter your Guess" onChange={(e)=>handleinput(e)} className="text-white"/>
-       
-       <div className='m-4 sm:m-0'>
-       &nbsp;
-
-       <Button variant="default" className="text-white " onClick={handlesubmit}><SendHorizonal/></Button>&nbsp; 
-        
-       </div>
-       <div className='m-4 sm:m-0'>
-       &nbsp;
-
-       <Button variant="destructive" className="text-white " onClick={()=>random()} ><Shuffle/></Button>
-        
-       </div>
-       <div>
-      
-       </div>
-       
-      <br/>
-       
-       
-      </div>
-)
+interface FormProps {
+  name: string;
 }
 
-export default Form
+const Form: React.FC<FormProps> = ({ name }) => {
+  const [input, setInput] = useState('');
+  const [res, setRes] = useState('');
+  const [data, setData] = useState('Please guess the Pokémon name!');
+
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInput(e.target.value);
+  };
+
+  const handleSubmit = () => {
+    if (name.toLowerCase() === input.toLowerCase()) {
+      setRes('Correct');
+      setData(`Gotcha! You caught the ${name}`);
+      setTimeout(() => random(), 3000); // Delay random action for 3 seconds
+      setInput('');
+    } else {
+      setRes('Incorrect');
+      setData('You missed it! Try again');
+      setTimeout(() => random(), 1000); // Delay random action for 1 second
+      setInput('');
+    }
+  };
+
+  return (
+    <div className='md:flex text-center mx-auto justify-center'>
+      <div className='flex-row md:flex mt-5'>
+        <Input type="text" placeholder="Enter your Guess" value={input} onChange={handleInput} className="text-white" />
+        <div className='flex m-4 md:m-0'>
+          <div className='sm:m-0'>
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button variant="default" className="text-white" onClick={handleSubmit}>
+                  <SendHorizonal />
+                </Button>
+              </DialogTrigger>
+              <DialogContent className='sm:max-w-[425px] text-white'>
+                {res === 'Correct' ? (
+                  <div>
+                    <ThumbsUp size={24} />
+                    <span>{data}</span>
+                  </div>
+                ) : (
+                  <div>
+                    <ThumbsDown size={24} />
+                    <span>{data}</span>
+                  </div>
+                )}
+              </DialogContent>
+            </Dialog>
+          </div>
+          <div className='sm:m-0'>
+            <Button variant="destructive" className="text-white" onClick={() => random()}>
+              <Shuffle />
+            </Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Form;

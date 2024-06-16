@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { CanvasRevealEffect } from "../components/ui/canvas-reveal-effect";
 import Image from "next/image";
 
-export function Canvas({randomPokemonId}:{randomPokemonId:string}) {
+export function Canvas({randomPokemonId}:{randomPokemonId:number}) {
   
   
    
@@ -28,8 +28,8 @@ export function Canvas({randomPokemonId}:{randomPokemonId:string}) {
                 animationSpeed={3}
                 containerClassName="bg-black"
                 colors={[
-                  [236, 72, 153],
-                  [232, 121, 249],
+                  [38, 166, 154], // Teal shade 1 (RGB)
+                  [0, 128, 128],  // Teal shade 2 (RGB)
                 ]}
                 dotSize={2}
               />
@@ -50,7 +50,7 @@ export function Canvas({randomPokemonId}:{randomPokemonId:string}) {
             <div className="ml-[20%] dark:text-white text-center mx-auto text-xl opacity-0 group-hover/canvas-card:opacity-100  z-10 text-black  font-bold group-hover/canvas-card:text-white group-hover/canvas-card:-translate-y-2 transition duration-200 font-sans -mt-[50%]">
               <Image 
               src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${randomPokemonId}.png`}
-              alt="pokemon"
+              alt={`Pokemon ${randomPokemonId}`}
                 width={200}
                 height={200}
               />
