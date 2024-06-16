@@ -5,12 +5,14 @@ import { Button } from '../components/ui/Button';
 import { SendHorizonal, Shuffle, ThumbsDown, ThumbsUp } from 'lucide-react';
 import random from '../../../utils/actions/random';
 import { Dialog, DialogContent, DialogTrigger } from '../components/ui/Dialog';
+import insertpoke from '@/db/scripts/insertpoke';
 
 interface FormProps {
   name: string;
+  pokeid: number;
 }
 
-const Form: React.FC<FormProps> = ({ name }) => {
+const Form: React.FC<FormProps> = ({ name,pokeid}) => {
   const [input, setInput] = useState('');
   const [res, setRes] = useState('');
   const [data, setData] = useState('Please guess the Pokémon name!');
@@ -21,6 +23,7 @@ const Form: React.FC<FormProps> = ({ name }) => {
 
   const handleSubmit = () => {
     if (name.toLowerCase() === input.toLowerCase()) {
+        insertpoke({pokeid,name})
       setRes('Correct');
       setData(`Gotcha! You caught the ${name}`);
       setTimeout(() => random(), 3000); // Delay random action for 3 seconds
@@ -61,7 +64,9 @@ const Form: React.FC<FormProps> = ({ name }) => {
             </Dialog>
           </div>
           <div className='sm:m-0'>
+            &nbsp;
             <Button variant="destructive" className="text-white" onClick={() => random()}>
+              
               <Shuffle />
             </Button>
           </div>

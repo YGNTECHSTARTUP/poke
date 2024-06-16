@@ -1,0 +1,1 @@
+ALTER TABLE "pokemons" ADD COLUMN "pokeid" integer NOT NULL;

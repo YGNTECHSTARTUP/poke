@@ -4,13 +4,18 @@ import { GridBackground } from './comp/GridBackground'
 import Link from 'next/link'
 import Form from './comp/Form'
 import { revalidatePath } from 'next/cache'
+import { db } from '@/db/drizzle'
+import { pokemons } from '@/db/schema'
 
 
 const page = async () => {
+  const res = await db.select().from(pokemons)
+  const caughtPokemonsIDS = res.map(pokemon=>pokemon.pokeid) 
+  console.log(caughtPokemonsIDS) 
   let id;
   let name
   do {
-      id = Math.floor(Math.random() * 1000 + 1);
+      id = Math.floor(Math.random() * 898 )+2;
       console.log(id);
       try{
         name = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`).then(res => res.json()).then(res => res.name)
@@ -19,7 +24,7 @@ const page = async () => {
          revalidatePath('/')
       }
 
-  } while (id === 0);
+  } while (id ===0 || caughtPokemonsIDS.includes(id))
 
   return (
     <div>
@@ -32,10 +37,10 @@ const page = async () => {
       <div className='text-white text-center text-balance'>
         <Link href="/" className='underline'>Home</Link>
         |
-        <Link href="/team">OurTeam</Link>
+        <Link href="/OurTeam">OurTeam</Link>
       </div>
       <Canvas randomPokemonId={id}/>
-      <Form name={name}/>
+      <Form name={name} pokeid={id}/>
       
         </div>
       

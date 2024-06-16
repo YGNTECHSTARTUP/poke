@@ -7,7 +7,7 @@ import Image from "next/image";
 
 export function Canvas({randomPokemonId}:{randomPokemonId:number}) {
   
-  
+  const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${randomPokemonId}.png`;
    
   return (
     <div className="">
@@ -49,7 +49,7 @@ export function Canvas({randomPokemonId}:{randomPokemonId:number}) {
 
             <div className="ml-[20%] dark:text-white text-center mx-auto text-xl opacity-0 group-hover/canvas-card:opacity-100  z-10 text-black  font-bold group-hover/canvas-card:text-white group-hover/canvas-card:-translate-y-2 transition duration-200 font-sans -mt-[50%]">
               <Image 
-              src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${randomPokemonId}.png`}
+              src={imageUrl}
               alt={`Pokemon ${randomPokemonId}`}
                 width={200}
                 height={200}
