@@ -11,9 +11,9 @@ const page = async () => {
   do {
       id = Math.floor(Math.random() * 860 + 1).toString();
       console.log(id);
-     
+      name = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`).then(res => res.json()).then(res => res.name)
+
   } while (id === "0");
-  name = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`).then(res => res.json()).then(res => res.name)
 
   return (
     <div>

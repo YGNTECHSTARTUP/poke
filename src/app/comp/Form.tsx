@@ -3,6 +3,7 @@ import React from 'react'
 import { Input } from '../components/Input'
 import { Button } from '../components/ui/Button'
 import { SendHorizonal, Shuffle } from 'lucide-react'
+import random from '../../../utils/actions/random'
 
 const Form = ({name}:{name:string}) => {
    const[input,setInput] = React.useState('' as string)
@@ -35,7 +36,7 @@ const Form = ({name}:{name:string}) => {
        <div className='m-4 sm:m-0'>
        &nbsp;
 
-       <Button variant="destructive" className="text-white "  ><Shuffle/></Button>
+       <Button variant="destructive" className="text-white " onClick={()=>random()} ><Shuffle/></Button>
         
        </div>
        <div>
