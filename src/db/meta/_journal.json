@@ -15,6 +15,20 @@
       "when": 1718550866704,
       "tag": "0001_secret_sharon_ventura",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1718558859858,
+      "tag": "0002_tricky_thing",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1718561214744,
+      "tag": "0003_nice_sway",
+      "breakpoints": true
     }
   ]
 }

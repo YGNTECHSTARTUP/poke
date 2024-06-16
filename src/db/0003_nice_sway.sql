@@ -1,0 +1,1 @@
+ALTER TABLE "pokemons" ALTER COLUMN "caughtby" DROP NOT NULL;

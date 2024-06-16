@@ -1,0 +1,71 @@
+{
+  "id": "51ace7ff-342c-4465-a4e6-eabad838d46a",
+  "prevId": "a202c9eb-0fd9-4b78-a6b6-dd68ba344064",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.pokemons": {
+      "name": "pokemons",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "pokeid": {
+          "name": "pokeid",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "caughtby": {
+          "name": "caughtby",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "time": {
+          "name": "time",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "pokemons_pokeid_unique": {
+          "name": "pokemons_pokeid_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "pokeid"
+          ]
+        },
+        "pokemons_name_unique": {
+          "name": "pokemons_name_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "name"
+          ]
+        }
+      }
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}
