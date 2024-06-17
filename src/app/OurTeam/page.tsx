@@ -5,11 +5,12 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import Image from 'next/image'
 import { MoveLeft } from 'lucide-react'
 import Link from 'next/link'
+export const dynamic = "force-dynamic";
 async function  getpoke() {
     const res = db.select().from(pokemons)
     return res
    }
-const page = async () => {
+const page =  async() => {
    
     const res = await getpoke()
     console.log(res)
