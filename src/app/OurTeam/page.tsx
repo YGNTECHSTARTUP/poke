@@ -19,7 +19,7 @@ const page =  async() => {
   const imageUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork';
   return (
     
-        <div className='absolute top-0 text-white bg-black'>
+        <div className='absolute top-0 text-white bg-black min-w-full'>
         <Link href="/" className='underline'>  
         
         <MoveLeft size={100}/>
