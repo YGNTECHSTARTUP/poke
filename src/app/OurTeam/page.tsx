@@ -12,7 +12,8 @@ async function  getpoke() {
    }
 const page =  async() => {
    
-    const res = await getpoke()
+    let res = await getpoke()
+    res = res.reverse()
     console.log(res)
 
   const imageUrl = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork';
