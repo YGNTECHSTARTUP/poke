@@ -10,7 +10,9 @@ const pressStart2P = Press_Start_2P({
 
 export const metadata: Metadata = {
   title: "PokiGuess",
-  description: "A Guessing Type Game where the correct guess goes to the team and can be visible to all",
+  description: "Pokeguess is a guessing game where you need to guess the correct name of a Pokémon to catch it.
+
+",
 };
 
 export default function RootLayout({
