@@ -38,8 +38,8 @@ const Form: React.FC<FormProps> = ({ name, pokeid }) => {
     } else {
       setRes('Incorrect');
       setData('You missed it! Try again');
-      setTimeout(() => random(), 1000) // Delay random action for 1 second
       setInput('');
+      random()
     }
   };
 
