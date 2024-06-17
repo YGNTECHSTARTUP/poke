@@ -15,7 +15,7 @@ const page = async () => {
   let id;
   let name
   do {
-      id = Math.floor(Math.random() * 898 )+2;
+      id = Math.floor(Math.random() * 500 )+2;
       try{
         name = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`).then(res => res.json()).then(res => res.name)
       }
