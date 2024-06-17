@@ -11,12 +11,11 @@ import { pokemons } from '@/db/schema'
 const page = async () => {
   const res = await db.select().from(pokemons)
   const caughtPokemonsIDS = res.map(pokemon=>pokemon.pokeid) 
-  console.log(caughtPokemonsIDS) 
+  console.log(caughtPokemonsIDS)
   let id;
   let name
   do {
       id = Math.floor(Math.random() * 898 )+2;
-      console.log(id);
       try{
         name = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`).then(res => res.json()).then(res => res.name)
       }

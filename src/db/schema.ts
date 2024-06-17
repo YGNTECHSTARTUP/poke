@@ -4,7 +4,7 @@ export const pokemons = pgTable("pokemons",{
     id:serial("id").primaryKey(),
     pokeid:integer("pokeid").notNull().unique(),
     named:text("name").notNull().unique(),
-    caughtby:text("caughtby"),
+    caughtby:text("caughtby").notNull().default("admin"),
     time:date("time").defaultNow()
 })
 

@@ -29,6 +29,13 @@
       "when": 1718561214744,
       "tag": "0003_nice_sway",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1718599331859,
+      "tag": "0004_normal_captain_cross",
+      "breakpoints": true
     }
   ]
 }
